@@ -1,0 +1,54 @@
+import React from "react";
+import { connect } from "react-redux";
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import Home from "./screens/Home";
+import Splash from "./screens/Splash";
+
+import NavigationService from "./utils";
+import { appStart } from "./modules";
+
+const Nav = createStackNavigator(
+  {
+    Home: {
+      screen: Home
+    },
+    Splash: {
+      screen: Splash
+    }
+  },
+  {
+    initialRouteName: "Splash"
+  }
+);
+
+const Navigation = createAppContainer(Nav);
+
+interface Props {
+  onStart: any;
+}
+
+class AppUnconected extends React.Component<Props> {
+  componentDidMount() {
+    const { onStart } = this.props;
+    onStart();
+  }
+
+  render() {
+    return (
+      <Navigation
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    );
+  }
+}
+
+const mapDisaptchToProps = {
+  onStart: appStart
+};
+
+export default connect(
+  null,
+  mapDisaptchToProps
+)(AppUnconected);
