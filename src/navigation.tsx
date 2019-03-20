@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Home from "./screens/Home";
 import Splash from "./screens/Splash";
+import City from "./screens/City";
 
 import NavigationService from "./utils";
 import { appStart } from "./modules";
@@ -14,6 +15,9 @@ const Nav = createStackNavigator(
     },
     Splash: {
       screen: Splash
+    },
+    City: {
+      screen: City
     }
   },
   {

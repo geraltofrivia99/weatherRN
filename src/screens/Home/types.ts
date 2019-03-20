@@ -8,4 +8,5 @@ export interface HomeScreenProps extends ConnectedProps {
 export interface ConnectedProps {
   onStart: any;
   onFetchCities: any;
+  onPressCity: any;
 }

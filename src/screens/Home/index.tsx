@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from "react-native";
 
-import { appStart, fetchCitiesStart } from "../../modules";
+import { appStart, fetchCitiesStart, fetchCityDataStart } from "../../modules";
 
 import { HomeScreenProps, ConnectedProps } from "./types";
 
@@ -29,10 +29,18 @@ class HomeUnconected extends Component<HomeScreenProps> {
   };
 
   renderItem = ({ item }: { item: any }) => (
-    <TouchableOpacity style={styles.item}>
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => this.goToCity(item.name)}
+    >
       <Text>{item.name}</Text>
     </TouchableOpacity>
   );
+
+  goToCity = (city: string) => {
+    const { onPressCity } = this.props;
+    onPressCity(city);
+  };
 
   render() {
     const { value } = this.state;
@@ -43,6 +51,7 @@ class HomeUnconected extends Component<HomeScreenProps> {
           value={value}
           onChangeText={this.onChange}
           style={styles.input}
+          placeholder="Search city"
         />
         <FlatList
           data={cities}
@@ -61,7 +70,8 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps: ConnectedProps = {
   onStart: appStart,
-  onFetchCities: fetchCitiesStart
+  onFetchCities: fetchCitiesStart,
+  onPressCity: fetchCityDataStart
 };
 
 export default connect(
