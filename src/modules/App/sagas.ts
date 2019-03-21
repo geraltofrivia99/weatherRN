@@ -63,7 +63,7 @@ function* onFetchCityData({ payload }: { payload: any }) {
     console.log("cityresp", response);
     if (response.current) {
       yield put(fetchCityDataSuccess(response));
-      yield call(NavigationService.navigate, "City", {});
+      yield call(NavigationService.navigate, "CityTabs", {});
     } else {
       console.log("err");
     }

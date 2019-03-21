@@ -19,7 +19,7 @@ const axesSvg = { fontSize: 10, fill: "grey" };
 const verticalContentInset = { top: 10, bottom: 10 };
 const xAxisHeight = 10;
 const City = (props: any) => {
-  const { location, current, forecast, days, temp } = props;
+  const { location, current, days, temp } = props;
   useEffect(() => {
     console.log(days, temp);
   });
