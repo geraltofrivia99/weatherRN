@@ -1,31 +1,34 @@
-import { takeLatest, call, put, delay } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 import {
   ON_APP_START,
   FETCH_CITIES_START,
-  FETCH_CITIES_DATA_START,
-  SET_LOCATIONS
+  FETCH_CITIES_DATA_START
 } from "./types";
 import NavigationService from "../../utils";
 import { get } from "../../config/api";
 
-import { fetchCitiesSuccess, fetchCityDataSuccess } from "../../modules";
+import {
+  fetchCitiesSuccess,
+  fetchCityDataSuccess,
+  setLocations
+} from "../../modules";
 
-const getLoc = () => {
-  navigator.geolocation.getCurrentPosition(
-    position => {
-      const location = JSON.stringify(position);
-      return location;
-    },
-    error => error.message,
-    { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-  );
-};
+const getUserLocation = () =>
+  new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      location => resolve(location),
+      error => reject(error)
+    );
+  });
 
 function* onStart() {
   try {
-    console.log("Start");
+    const {
+      coords: { latitude, longitude }
+    } = yield call(getUserLocation);
+    yield put(setLocations({ lat: latitude, lon: longitude, error: null }));
     const response = yield call(get, {
-      query: "G2J",
+      query: `${latitude},${longitude}`,
       params: "search.json"
     });
 
@@ -33,9 +36,7 @@ function* onStart() {
       yield put(fetchCitiesSuccess(response));
     } else {
     }
-    // const location = yield call(getLoc);
-    // console.log(location);
-    yield call(NavigationService.navigate, "Home", {});
+    yield call(NavigationService.navigate, "HomeTabs", {});
   } catch (err) {
     console.log(err);
   }
@@ -63,7 +64,7 @@ function* onFetchCityData({ payload }: { payload: any }) {
     console.log("cityresp", response);
     if (response.current) {
       yield put(fetchCityDataSuccess(response));
-      yield call(NavigationService.navigate, "CityTabs", {});
+      yield call(NavigationService.navigate, "City", {});
     } else {
       console.log("err");
     }

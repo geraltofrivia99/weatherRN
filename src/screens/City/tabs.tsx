@@ -2,12 +2,13 @@ import React from "react";
 import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
-import City from "./index";
+import Home from "../Home";
 import Maps from "./Maps";
 
-const CityTabs = createBottomTabNavigator({
-  City: {
-    screen: City,
+const HomeTabs = createBottomTabNavigator({
+  Home: {
+    screen: Home,
+    header: null,
     navigationOptions: {
       title: "CPU",
       tabBarIcon: ({ tintColor }: { tintColor: any }) => (
@@ -17,6 +18,7 @@ const CityTabs = createBottomTabNavigator({
   },
   Maps: {
     screen: Maps,
+    header: null,
     navigationOptions: {
       title: "CPU",
       tabBarIcon: ({ tintColor }: { tintColor: any }) => (
@@ -26,4 +28,4 @@ const CityTabs = createBottomTabNavigator({
   }
 });
 
-export default createAppContainer(CityTabs);
+export default createAppContainer(HomeTabs);

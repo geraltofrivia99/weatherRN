@@ -1,28 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import Home from "./screens/Home";
 import Splash from "./screens/Splash";
-// import City from "./screens/City";
-import CityTabs from "./screens/City/tabs";
+import City from "./screens/City";
+import HomeTabs from "./screens/City/tabs";
 
 import NavigationService from "./utils";
 import { appStart } from "./modules";
 
 const Nav = createStackNavigator(
   {
-    Home: {
-      screen: Home
+    HomeTabs: {
+      screen: HomeTabs,
+      header: null
     },
     Splash: {
       screen: Splash
     },
-    CityTabs: {
-      screen: CityTabs
+    City: {
+      screen: City
     }
   },
   {
-    initialRouteName: "Splash"
+    initialRouteName: "Splash",
+    headerMode: "none"
   }
 );
 

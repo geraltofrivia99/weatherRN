@@ -29,6 +29,7 @@ export const fetchCityDataSuccess = (payload: any) => ({
   payload
 });
 
-export const setLocations = () => ({
-  type: SET_LOCATIONS
+export const setLocations = (payload: any) => ({
+  type: SET_LOCATIONS,
+  payload
 });

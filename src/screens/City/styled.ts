@@ -42,5 +42,25 @@ export const styles = StyleSheet.create({
   wind: {
     width: "100%",
     textAlign: "left"
+  },
+  bodyContainer: {
+    // ...StyleSheet.absoluteFillObject,
+    width: "100%",
+    height: "35%",
+    paddingHorizontal: 10,
+    overflow: "hidden"
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+    position: "absolute",
+    top: 0,
+    left: 10,
+    right: 10,
+    bottom: 0,
+    width: "100%",
+    height: "100%"
+  },
+  flat: {
+    paddingHorizontal: 15
   }
 });

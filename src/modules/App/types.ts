@@ -13,4 +13,9 @@ export interface AppState {
   isLoading: boolean;
   cities: Array<object>;
   curentCity: Object;
+  locations: {
+    lat: number;
+    lon: number;
+    error?: any;
+  };
 }
