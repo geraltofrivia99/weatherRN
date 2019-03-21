@@ -7,6 +7,8 @@ export const FETCH_CITIES_SUCCESS = "App/FETCH_CITIES_SUCCESS";
 export const FETCH_CITIES_DATA_START = "App/FETCH_CITIES_DATA_START";
 export const FETCH_CITIES_DATA_SUCCESS = "App/FETCH_CITIES_DATA_SUCCESS";
 
+export const SET_LOCATIONS = "App/SET_LOCATIONS";
+
 export interface AppState {
   isLoading: boolean;
   cities: Array<object>;

@@ -2,25 +2,43 @@ import { takeLatest, call, put, delay } from "redux-saga/effects";
 import {
   ON_APP_START,
   FETCH_CITIES_START,
-  FETCH_CITIES_DATA_START
+  FETCH_CITIES_DATA_START,
+  SET_LOCATIONS
 } from "./types";
 import NavigationService from "../../utils";
 import { get } from "../../config/api";
 
 import { fetchCitiesSuccess, fetchCityDataSuccess } from "../../modules";
 
-function* onStart() {
-  console.log("Start");
-  const response = yield call(get, {
-    query: "G2J",
-    params: "search.json"
-  });
+const getLoc = () => {
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      const location = JSON.stringify(position);
+      return location;
+    },
+    error => error.message,
+    { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+  );
+};
 
-  if (Array.isArray(response)) {
-    yield put(fetchCitiesSuccess(response));
-  } else {
+function* onStart() {
+  try {
+    console.log("Start");
+    const response = yield call(get, {
+      query: "G2J",
+      params: "search.json"
+    });
+
+    if (Array.isArray(response)) {
+      yield put(fetchCitiesSuccess(response));
+    } else {
+    }
+    // const location = yield call(getLoc);
+    // console.log(location);
+    yield call(NavigationService.navigate, "Home", {});
+  } catch (err) {
+    console.log(err);
   }
-  yield call(NavigationService.navigate, "Home", {});
 }
 
 function* onFetchCities({ payload }: { payload: any }) {

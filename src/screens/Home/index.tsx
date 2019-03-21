@@ -19,8 +19,25 @@ class HomeUnconected extends Component<HomeScreenProps> {
     header: null
   };
   state = {
-    value: ""
+    value: "",
+    latitude: "",
+    longitude: "",
+    error: null
   };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const location = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null
+        };
+      },
+      error => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  }
 
   onChange = (value: string) => {
     const { onFetchCities } = this.props;
