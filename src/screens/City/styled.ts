@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -6,18 +8,18 @@ export const styles = StyleSheet.create({
     // justifyContent: "center",
     // alignItems: "center",
     backgroundColor: "#F5FCFF",
-    paddingVertical: 30
+    paddingBottom: 30
   },
   title: {
     width: "100%",
-    // justifyContent: "center",
-    alignItems: "center",
     height: "50%",
-    paddingHorizontal: 30
+    padding: 30
   },
   titleText: {
     fontSize: 26,
-    color: "#000"
+    color: "#000",
+    width: "100%",
+    textAlign: "center"
   },
   icon: {
     width: 64,
@@ -61,6 +63,18 @@ export const styles = StyleSheet.create({
     height: "100%"
   },
   flat: {
+    paddingTop: 15,
+    paddingBottom: 80,
     paddingHorizontal: 15
+  },
+  loader: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width,
+    height,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff"
   }
 });

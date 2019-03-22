@@ -10,7 +10,8 @@ import { get } from "../../config/api";
 import {
   fetchCitiesSuccess,
   fetchCityDataSuccess,
-  setLocations
+  setLocations,
+  setError
 } from "../../modules";
 
 const getUserLocation = () =>
@@ -38,6 +39,8 @@ function* onStart() {
     }
     yield call(NavigationService.navigate, "HomeTabs", {});
   } catch (err) {
+    yield put(setError());
+    yield call(NavigationService.navigate, "Error", {});
     console.log(err);
   }
 }

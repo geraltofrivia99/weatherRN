@@ -10,9 +10,9 @@ const HomeTabs = createBottomTabNavigator({
     screen: Home,
     header: null,
     navigationOptions: {
-      title: "CPU",
+      title: "Saerch",
       tabBarIcon: ({ tintColor }: { tintColor: any }) => (
-        <Icon name="microchip" size={17} color={tintColor} />
+        <Icon name="search" size={17} color={tintColor} />
       )
     }
   },
@@ -20,9 +20,9 @@ const HomeTabs = createBottomTabNavigator({
     screen: Maps,
     header: null,
     navigationOptions: {
-      title: "CPU",
+      title: "Map",
       tabBarIcon: ({ tintColor }: { tintColor: any }) => (
-        <Icon name="microchip" size={17} color={tintColor} />
+        <Icon name="map-marker-alt" size={17} color={tintColor} />
       )
     }
   }

@@ -5,7 +5,8 @@ import {
   FETCH_CITIES_SUCCESS,
   FETCH_CITIES_DATA_START,
   FETCH_CITIES_DATA_SUCCESS,
-  SET_LOCATIONS
+  SET_LOCATIONS,
+  SET_ERRORS
 } from "./types";
 
 export const setApp = (payload: any) => ({ type: SET_APP, payload });
@@ -32,4 +33,8 @@ export const fetchCityDataSuccess = (payload: any) => ({
 export const setLocations = (payload: any) => ({
   type: SET_LOCATIONS,
   payload
+});
+
+export const setError = () => ({
+  type: SET_ERRORS
 });

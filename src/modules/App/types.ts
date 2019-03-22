@@ -9,6 +9,8 @@ export const FETCH_CITIES_DATA_SUCCESS = "App/FETCH_CITIES_DATA_SUCCESS";
 
 export const SET_LOCATIONS = "App/SET_LOCATIONS";
 
+export const SET_ERRORS = "App/SET_ERRORS";
+
 export interface AppState {
   isLoading: boolean;
   cities: Array<object>;
@@ -18,4 +20,5 @@ export interface AppState {
     lon: number;
     error?: any;
   };
+  errors: any;
 }

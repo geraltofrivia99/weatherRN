@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import { View } from "react-native";
-import MapView from "react-native-maps";
+import { View, ActivityIndicator } from "react-native";
+import MapView, { Marker } from "react-native-maps";
 import { getDelta } from "../../utils";
 import CityList from "../../components/CityList";
 
@@ -21,6 +21,7 @@ interface Props {
 
 interface State {
   region: any;
+  isMapReady: boolean;
 }
 
 class Maps extends PureComponent<Props, State> {
@@ -30,36 +31,54 @@ class Maps extends PureComponent<Props, State> {
       location: { lat, lon }
     } = props;
     this.state = {
-      region: getDelta(lat, lon, 9000)
+      region: getDelta(lat, lon, 9000),
+      isMapReady: false
     };
   }
 
   onRegionChange = (loc: any) => {
     const { latitude, longitude } = loc;
     const { onFetchCities } = this.props;
-    this.setState({ region: getDelta(latitude, longitude, 9000) });
+    this.setState({ region: loc });
     onFetchCities(`${latitude}, ${longitude}`);
+  };
+
+  onmapReady = () => {
+    this.setState({ isMapReady: true });
   };
 
   render() {
     const {
       cities,
-      location: { lat, lon },
-      onPressCity
+      onPressCity,
+      location: { lat, lon }
     } = this.props;
-    const { region } = this.state;
+    const { region, isMapReady } = this.state;
     return (
-      <View style={{ flex: 1, paddingVertical: 30 }}>
+      <View style={{ flex: 1, paddingVertical: 30, paddingBottom: 60 }}>
         <View style={styles.bodyContainer}>
           <MapView
             style={styles.map}
             onRegionChangeComplete={this.onRegionChange}
             region={region}
-          />
+            onMapReady={this.onmapReady}
+          >
+            <Marker
+              coordinate={{
+                latitude: lat,
+                longitude: lon
+              }}
+            />
+          </MapView>
         </View>
         <View style={styles.flat}>
           <CityList cities={cities} onPressCity={onPressCity} />
         </View>
+        {!isMapReady && (
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
+        )}
       </View>
     );
   }

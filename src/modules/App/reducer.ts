@@ -3,7 +3,8 @@ import { AppState } from "./types";
 import {
   FETCH_CITIES_SUCCESS,
   FETCH_CITIES_DATA_SUCCESS,
-  SET_LOCATIONS
+  SET_LOCATIONS,
+  SET_ERRORS
 } from "./types";
 
 export const initialState: AppState = {
@@ -14,7 +15,8 @@ export const initialState: AppState = {
     lat: 0,
     lon: 0,
     error: null
-  }
+  },
+  errors: null
 };
 
 export default (state: AppState = initialState, action: any) => {
@@ -33,6 +35,11 @@ export default (state: AppState = initialState, action: any) => {
       return {
         ...state,
         locations: action.payload
+      };
+    case SET_ERRORS:
+      return {
+        ...state,
+        errors: "Connection Problems"
       };
     default:
       return state;

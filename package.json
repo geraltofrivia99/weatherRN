@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@types/react-native-svg-charts": "^5.0.1",
+    "@types/react-native-tab-view": "^1.0.5",
     "@types/react-native-vector-icons": "^4.6.4",
     "@types/react-redux": "^7.0.5",
     "@types/remote-redux-devtools": "^0.5.3",
@@ -16,8 +17,10 @@
     "react-native-gesture-handler": "~1.0.14",
     "react-native-maps": "^0.23.0",
     "react-native-paper": "^2.14.0",
+    "react-native-reanimated": "^1.0.0-alpha.12",
     "react-native-svg": "^9.3.5",
     "react-native-svg-charts": "^5.2.0",
+    "react-native-tab-view": "^2.0.3",
     "react-native-vector-icons": "^6.4.2",
     "react-navigation": "^3.4.1",
     "react-navigation-extension": "^2.1.0",

@@ -4,6 +4,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import Splash from "./screens/Splash";
 import City from "./screens/City";
 import HomeTabs from "./screens/City/tabs";
+import ErrorScreen from "./screens/Error";
 
 import NavigationService from "./utils";
 import { appStart } from "./modules";
@@ -19,6 +20,9 @@ const Nav = createStackNavigator(
     },
     City: {
       screen: City
+    },
+    Error: {
+      screen: ErrorScreen
     }
   },
   {
